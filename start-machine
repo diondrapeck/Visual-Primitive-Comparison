@@ -17,7 +17,7 @@ workon venv
 
 # clone Summer2017
 git clone
-cd Summer2017
+cd MSR\ Summer\ 2017
 pip install -r requirements.txt
 
 # Caffe
