@@ -1,0 +1,54 @@
+#!/bin/sh
+
+sudo apt-get update
+sudo apt-get upgrade
+sudo apt-get install emacs g++ git zsh tmux mlocate
+sudo apt-get install -y build-essential cmake git pkg-config
+sudo apt-get install -y libprotobuf-dev libleveldb-dev libsnappy-dev libhdf5-serial-dev protobuf-compiler
+sudo apt-get install -y libatlas-base-dev
+sudo apt-get install -y --no-install-recommends libboost-all-dev
+sudo apt-get install -y libgflags-dev libgoogle-glog-dev liblmdb-dev
+sudo apt-get install pvrg-jpeg
+echo "PVRG_COMMAND = 'pvrg-jpeg'" >> ~/donuts/config.py
+
+# (Python general)
+sudo apt-get install -y python-pip
+
+# (Python 2.7 development files)
+sudo apt-get install -y python-dev
+sudo apt-get install -y python-numpy python-scipy
+
+# (OpenCV 2.4)
+sudo apt-get install -y libopencv-dev
+
+sudo pip install --upgrade pip
+sudo pip install --upgrade virtualenv
+sudo pip install virtualenvwrapper
+
+cd ~/
+
+# install Caffe dependencies
+sudo pip install scikit-image
+sudo pip install protbuf 
+
+# Get Caffe
+git clone https://github.com/BVLC/caffe.git
+
+cp donuts/bin/caffe_Makefile.config caffe/Makefile.config
+
+# Install python dependencies
+cd caffe/python
+for req in $(cat pip_freeze); do sudo pip install $req; done
+
+# Install caffe
+echo "export LD_LIBRARY_PATH=/usr/local/cuda-7.5/lib64/" >> ~/.bashrc
+echo "export PYTHONPATH=~/caffe/python:$PYTHONPATH" >> ~/.bashrc
+source ~/.bashrc
+cd ..
+make all
+make test
+make runtest
+make distribute
+
+# check that everything works
+python -c "import caffe"
