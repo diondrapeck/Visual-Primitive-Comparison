@@ -1,0 +1,44 @@
+#!/bin/sh
+sudo apt-get tmux
+
+# Pip
+sudo apt-get install python-pip
+
+# Virtual Environment
+pip install virtualenv
+virtualenv venv
+
+# Virtual Environment Wrapper
+pip install virtualenvwrapper
+export WORKON_HOME=~/Envs
+source /usr/local/bin/virtualenvwrapper.sh
+mkvirtualenv venv
+workon venv
+
+# clone Summer2017
+git clone
+cd Summer2017
+pip install -r requirements.txt
+
+# Caffe
+sudo apt-get update
+
+sudo apt-get upgrade
+
+sudo apt-get install -y build-essential cmake git pkg-config
+
+sudo apt-get install -y libprotobuf-dev libleveldb-dev libsnappy-dev libhdf5-serial-dev protobuf-compiler
+
+sudo apt-get install -y libatlas-base-dev 
+
+sudo apt-get install -y --no-install-recommends libboost-all-dev
+
+sudo apt-get install -y libgflags-dev libgoogle-glog-dev liblmdb-dev
+
+# (Python 2.7 development files)
+sudo apt-get install -y python-dev
+sudo apt-get install -y python-numpy python-scipy
+
+# (OpenCV 2.4)
+sudo apt-get install -y libopencv-dev
+
