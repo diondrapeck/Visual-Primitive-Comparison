@@ -29,8 +29,7 @@ sudo pip install virtualenvwrapper
 cd ~/
 
 # install Caffe dependencies
-sudo pip install scikit-image
-sudo pip install protbuf 
+sudo pip install scikit-image protbuf 
 
 # Get Caffe
 git clone https://github.com/BVLC/caffe.git
