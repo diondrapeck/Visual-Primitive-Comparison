@@ -1,0 +1,22 @@
+Notes on "Network Dissection: Quantifying Interpretability of Deep Visual Representations"
+
+ - quantify interpretability of latent representations of CNNs (alignment
+   between hidden units and semantic concepts)
+ 
+Hypothesis: Is unit interpretability equivalent ot random linear combinations
+of semantic units?
+
+ - interpretability != discrimination ability
+ - layer interpretability = sum of concept pairs in that layer = sum of
+   unique detectors
+ - must have a heterogeneous dataset
+ - self-supervision --> better texture detection but worse object detection
+   (same with dropout)
+ - batch normalization's discrmination is inversely proportional to
+   interpretability
+
+Questions:
+ 1. Will practitioner-interpretable concepts emerge as individual latent
+    variables within the CNN (e.g. color, texture, objects)?
+ 2. Should we add more self-supervision/dropout? How can we optimize
+    interpretability and discrimination through architecture changes?
